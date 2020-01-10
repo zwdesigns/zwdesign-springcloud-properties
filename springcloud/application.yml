@@ -1,0 +1,46 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 200
+        min-spare-threads: 30
+    port: 7001
+    servlet:
+        context-path: /
+
+debug: true
+
+#spring
+spring:
+  application:
+    name: zwdesign-eureka-client
+  # 环境 dev|test|prod
+  profiles:
+      active: dev
+  servlet:
+      multipart:
+          max-file-size: 100MB
+          max-request-size: 100MB
+          enabled: true
+  mvc:
+    static-path-pattern: /static/**
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+logging:
+  #path: logs/
+  #file: zwdesign-assembly.log
+  level:
+    net.zwdesign: debug
+    org.springframework.boot: error
+    org.springframework.cloud: debug
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:2088/eureka/
